@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Portfolio | 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        
+        /* --- CSS Custom Variables --- */
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- Global Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Background Decoration --- */
+        .blob {
+            position: fixed;
+            top: -10%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--primary), transparent);
+            filter: blur(80px);
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 10%;
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--light);
+            font-weight: 500;
+            opacity: 0.7;
+            transition: 0s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 10%;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            color: #94a3b8;
+        }
+
+        
+
+        /* --- Projects Grid --- */
+        .section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 20px;
+            transition: 0.4s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary);
+            transform: translateY(-10px);
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #94a3b8;
+        }
+        
+
+        /* --- Contact --- */
+        .footer {
+            text-align: center;
+            padding: 5rem 10%;
+            background: #0a0f1d;
+        }
+         .skills-container {
+    padding: 40px 10%;
+    text-align: left; /* Aligns title to the left like your screenshot */
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+/* This turns the vertical list into a horizontal row */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap; /* Allows pills to move to next line if screen is small */
+    gap: 15px;      /* Spacing between pills */
+}
+
+.skill-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 50px; /* Makes them rounded */
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+/* The glowing purple dot */
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #6366f1;
+    border-radius: 50%;
+    margin-right: 12px;
+    box-shadow: 0 0 10px #6366f1;
+}
+
+/* Hover effect to make it interactive */
+.skill-pill:hover {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: #6366f1;
+    transform: translateY(-3px);
+}
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="blob"></div>
+
+    <nav>
+        <div class="logo">Qusai Alattabi</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about me">about me</a></li>
+            <li><a href="#skills">skills</a></li>
+            <li><a href="#projects">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="profile-space">
+        </div>
+        <br><br>
+        <br><br>
+
+        <br><br>
+        <br><br>
+
+        <br><br>
+
+        <br><br>
+
+       
+        <h1>Hi, I'm Qusai Alattabi <br><span style="color: var(--primary)">A Biotechnologist</span></h1>
+        <div class="profile-icon-wrapper">
+            <img src="Subject.png" alt="Profile" style="height:500px; width: 400px ; margin-top: 500;" >
+        </div>
+        <p>Biotechnology Student @ Sultan Qaboos University | Molecular & Microbiology | Research & Lab Skills</p>
+        
+        
+    </header>
+    <section class="section" id="about me">
+
+        <br><br>
+        <br><br>
+
+        <h3 class="section-title"> About</h3>
+        <div class="grid">
+            <div class="card">
+                
+                <p>I am a Biotechnology student. My academic background includes advanced coursework in molecular diversity, laboratory techniques, and biotechnology applications, providing me with a solid foundation in both theoretical knowledge and practical scientific concepts.</p>
+            </div>
+            <div class="card">
+                
+                <p>I have gained research experience through working as part of a research team. Through this project, I developed hands-on laboratory skills, experience in data analysis, and an understanding of research methodology, while strengthening my ability to collaborate effectively in a scientific environm</p>
+            </div>
+            <div class="card">
+                
+                <p>I am seeking training and research opportunities that allow me to apply my knowledge, expand my technical skills, and gain real-world experience in academic or industrial settings. I am highly motivated, detail-oriented, and eager to contribute to projects that support innovation, sustainability, and advancements in biotechnology.</p>
+            </div>
+        </div>
+    </section>
+    <section class="skills-container" id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-pill"><span class="dot"></span> HTML & CSS</div>
+            <div class="skill-pill"><span class="dot"></span> JavaScript</div>
+            <div class="skill-pill"><span class="dot"></span> 
+                Team Management</div>
+            <div class="skill-pill"><span class="dot"></span> 
+                Corporate Communications</div>
+            <div class="skill-pill"><span class="dot"></span> 
+                Biotechnology </div>
+            <div class="skill-pill"><span class="dot"></span> 
+                Leadership</div>
+            <div class="skill-pill"><span class="dot"></span> 
+                Self Learning</div>
+            <div class="skill-pill"><span class="dot"></span> 
+                
+Attention to Detail </div>
+            <div class="skill-pill"><span class="dot"></span> 
+                
+Scientific Research</div>
+            <div class="skill-pill"><span class="dot"></span> 
+                
+Adaptability </div>
+            <div class="skill-pill"><span class="dot"></span> 
+                Time Management</div>
+            <div class="skill-pill"><span class="dot"></span> 
+                Teamwork</div>
+            <div class="skill-pill"><span class="dot"></span> 
+                
+Research Methodology</div>
+            <div class="skill-pill"><span class="dot"></span> 
+                
+Critical Thinking</div>
+            <div class="skill-pill"><span class="dot"></span> 
+                
+Literature Reviews </div>
+            <div class="skill-pill"><span class="dot"></span> 
+                
+data collection and analysis </div>
+            <div class="skill-pill"><span class="dot"></span> 
+                
+Experimental Design</div>
+            <div class="skill-pill"><span class="dot"></span> 
+                
+
+                Problem Solving </div>
+            <div class="skill-pill"><span class="dot"></span> 
+                
+
+                Good Laboratory Practice (GLP)</div>
+            <div class="skill-pill"><span class="dot"></span> 
+                
+
+                Molecular Biology  </div>
+            <div class="skill-pill"><span class="dot"></span> 
+                
+
+                Python </div>
+            <div class="skill-pill"><span class="dot"></span> 
+                
+
+                Project Management </div>
+            <div class="skill-pill"><span class="dot"></span> 
+                
+
+                Communication</div>
+            <div class="skill-pill"><span class="dot"></span> 
+                
+
+                
+Analytical Skills </div>
+            <div class="skill-pill"><span class="dot"></span> 
+                
+
+                
+Microsoft Office</div>
+            <div class="skill-pill"><span class="dot"></span> 
+                
+
+                
+Work Ethics  </div>
+        </div>
+    </section>
+    <section class="section" id="projects">
+        <h2 class="section-title">Experience</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>1. Vice President of Relations Committee </h3>
+                <p>
+                    - College of Science Society - 
+                    Sultan Qaboos University <br>
+                    Sep 2024 - May 2025 · 9 mos</p>
+            </div>
+            <div class="card">
+                <h3>2. President of Relations Committee - Biology Group - College of Science </h3>
+                <p>
+                    - Biology Group - College of Science - 
+                    Sultan Qaboos University 
+                    Dec 2022 - May 2024 · 1 yr 6 mos</p>
+            
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        
+        <p style="margin-bottom: 2rem;">Reach out at <img src="linkedin.png" alt="Profile" style="height:20px; width: 20px ; margin-top: 500;" > <a href="linkedin.com/in/qussai-alattabi-4437953a8 "><strong >linkedin.com </strong></a></p>
+        <p style="margin-bottom: 2rem;"> <img src="phone.png" alt="Profile" style="height:20px; width: 20px ; margin-top: 500;" > <strong>96960929</strong></p>
+
+        <p style="opacity: 0.5; font-size: 0.8rem;">&copy; 2026 Qusai Alattabi All rights reserved.</p>
+    </footer>
+    
+    
+</body>
+</html>
